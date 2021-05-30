@@ -3,7 +3,8 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /api/v1/users/1
   def show
-    render json: user, status: :accepted
+    user_json = UserSerializer.new(@user).serialized_json
+    render json: user_json, status: :accepted
   end
 
   # POST /api/v1/users
@@ -35,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def set_user
-      user = User.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     def user_params
