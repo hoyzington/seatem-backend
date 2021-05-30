@@ -1,3 +1,3 @@
-class Api::V1::Event < ApplicationRecord
+class Event < ApplicationRecord
   belongs_to :user
 end
