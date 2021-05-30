@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :events, except: [:index, :show]
+    end
+  end
+  namespace :api do
+    namespace :v1 do
       resources :users, except: [:index]
     end
   end
