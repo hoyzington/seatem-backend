@@ -2,13 +2,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'signup', to: 'users#create'
-      post 'login', to: 'users#show'
-      get 'get_current_user', to: 'users#get_current_user'
+      post 'login', to: 'sessions#create'
+      get 'get_current_user', to: 'sessions#get_current_user'
+      delete 'logout', to: 'sessions#destroy'
       resources :users, except: [:index, :create, :show]
-    end
-  end
-  namespace :api do
-    namespace :v1 do
       resources :events, except: [:index, :show]
     end
   end
