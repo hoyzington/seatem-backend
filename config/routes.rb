@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'signup', to: 'users#create'
       post 'login', to: 'users#show'
+      get 'get_current_user', to: 'users#get_current_user'
       resources :users, except: [:index, :create, :show]
     end
   end
