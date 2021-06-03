@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      user_json = UserSerializer.new(user).serialized_json
+      user_json = UserSerializer.new(user).to_serialized_json
       render json: user_json, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
   # PATCH/PUT /api/v1/users/1
   def update
     if user.update(user_params)
-      user_json = UserSerializer.new(@user).serialized_json
+      user_json = UserSerializer.new(@user).to_serialized_json
       render json: user_json, status: :updated
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
