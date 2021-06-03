@@ -1,30 +1,29 @@
 class Api::V1::EventsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :destroy]
+  before_action :set_event, only: [:update, :destroy]
 
   # POST /api/v1/events
   def create
     event = Event.new(event_params)
-
     if event.save
-      render json: event, status: :created, location: event
+      render json: EventSerializer.new(event).to_serialized_json, status: :created
     else
-      render json: event.errors, status: :unprocessable_entity
+      render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /api/v1/events/1
   def update
     if event.update(event_params)
-      render json: event, status: :updated
+      render json: EventSerializer.new(event).to_serialized_json, status: :created
     else
-      render json: event.errors, status: :unprocessable_entity
+      render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/v1/events/1
   def destroy
     event.destroy
-    render json: {userId: user.id}, status: :destroyed
+    render json: { eventId: event.id }, status: :destroyed
   end
 
   private
@@ -34,6 +33,6 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:data, :user_id)
+      params.require(:event).permit(:id, :name, :table, :chairs, :guests, :guestQty, :descriptions, :newlyAffectedGuests, :user_id)
     end
 end
