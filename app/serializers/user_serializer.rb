@@ -1,4 +1,15 @@
 class UserSerializer
-  include FastJsonapi::ObjectSerializer
-  attributes :username, :email, :events
+  def initialize(user_object)
+    @user = user_object
+  end
+
+  def to_serialized_json
+    {
+      user: {
+        username: @user.username,
+        email: @user.email,
+      },
+      events: @user.events
+    }
+  end
 end
