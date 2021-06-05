@@ -5,7 +5,7 @@ class Api::V1::EventsController < ApplicationController
   def create
     event = Event.new(event_params)
     if event.save
-      render json: event.user.events, status: :created
+      render json: event, status: :created
     else
       render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
     end
