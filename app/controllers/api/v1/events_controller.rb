@@ -14,7 +14,7 @@ class Api::V1::EventsController < ApplicationController
   # PATCH/PUT /api/v1/events/1
   def update
     if event.update(event_params)
-      render json: event.user.events, status: :created
+      render json: { notice: `#{event.name} has been updated` }, status: :created
     else
       render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
     end
@@ -23,7 +23,7 @@ class Api::V1::EventsController < ApplicationController
   # DELETE /api/v1/events/1
   def destroy
     event.destroy
-    render json: event.user.events, status: :destroyed
+    render json: { notice: `#{event.name} has been deleted` }, status: :destroyed
   end
 
   private
