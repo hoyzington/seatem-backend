@@ -5,9 +5,11 @@ Rails.application.routes.draw do
       post 'login', to: 'sessions#create'
       get 'get_current_user', to: 'sessions#get_current_user'
       delete 'logout', to: 'sessions#destroy'
-      resources :users, except: [:index, :create, :show]
-      resources :events
-      resources :guests
+      resources :users, only: [:update, :destroy] do
+        resources :events, only: [:create, :update, :destroy] do
+          resources :guests, only: [:create, :update, :destroy]
+        end
+      end
     end
   end
 end
