@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_170454) do
+ActiveRecord::Schema.define(version: 2021_06_07_232102) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2021_06_07_170454) do
     t.string "table"
     t.string "guestQty"
     t.string "chairs"
-    t.string "guests"
     t.string "newlyAffectedGuests"
     t.string "descriptions"
     t.index ["user_id"], name: "index_events_on_user_id"
