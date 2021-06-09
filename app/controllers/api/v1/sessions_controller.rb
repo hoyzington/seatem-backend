@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       user_json = UserSerializer.new(user).to_serialized_json
       render json: user_json, status: :accepted
     else
-      render json: { error: "Incorrect email/password" }
+      render json: { errors: { login: "Incorrect email/password" } }
     end
   end
 
@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
       user_json = UserSerializer.new(current_user).to_serialized_json
       render json: user_json, status: :accepted
     else
-      render json: { error: "No one logged in" }
+      render json: { errors: { currentUser: "No one logged in" } }
     end
   end
 

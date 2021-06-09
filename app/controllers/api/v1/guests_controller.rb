@@ -7,7 +7,7 @@ class Api::V1::GuestsController < ApplicationController
     if guest.save
       render json: guest, except: [:created_at, :updated_at] status: :created, location: guest
     else
-      render json: { errors: guest.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: { newGuest: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class Api::V1::GuestsController < ApplicationController
     if @guest.update(guest_params)
       render json: { notice: `#{@guest.name} has been updated` }, status: :created
     else
-      render json: { errors: @guest.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: { guestUpdate: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
