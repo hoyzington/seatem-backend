@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
       user_json = UserSerializer.new(current_user).to_serialized_json
       render json: user_json, status: :accepted
     else
-      render json: { errors: { type: 'currentUser', content: "No one logged in" } }
+      render json: { error: "No one logged in" }
     end
   end
 
