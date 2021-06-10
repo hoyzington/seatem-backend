@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
       user_json = UserSerializer.new(user).to_serialized_json
       render json: user_json, status: :created
     else
-      render json: { errors: { signup: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'signup', content: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
       user_json = UserSerializer.new(@user).to_serialized_json
       render json: user_json, status: :updated
     else
-      render json: { errors: { userUpdate: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'userUpdate', content: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 

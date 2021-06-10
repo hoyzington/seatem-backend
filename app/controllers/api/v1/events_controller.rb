@@ -7,7 +7,7 @@ class Api::V1::EventsController < ApplicationController
     if event.save
       render json: event, status: :created
     else
-      render json: { errors: { newEvent: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'newEvent', content: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class Api::V1::EventsController < ApplicationController
     if event.update(event_params)
       render json: { notice: `#{event.name} has been updated` }, status: :created
     else
-      render json: { errors: { eventUpdate: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'eventUpdate', content: user.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
