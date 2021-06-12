@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
   # DELETE /api/v1/users/1
   def destroy
     @user.destroy
-    render json: {userId: @user.id}, status: :reset_content
+    render json: { notice: 'Your account has been deleted' }, status: :reset_content
   end
 
   private
