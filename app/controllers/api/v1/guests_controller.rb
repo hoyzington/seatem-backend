@@ -14,7 +14,7 @@ class Api::V1::GuestsController < ApplicationController
   # PATCH/PUT /api/v1/guests/1
   def update
     if @guest.update(guest_params)
-      render json: { notice: `#{@guest.name} has been updated` }, status: :created
+      render json: { notice: `#{@guest.name} has been updated` }, status: :partial_content
     else
       render json: { errors: { type: 'guestUpdate', content: user.errors.full_messages } }, status: :unprocessable_entity
     end
