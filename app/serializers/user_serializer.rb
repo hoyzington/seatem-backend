@@ -9,6 +9,16 @@ class UserSerializer
         id: @user.id,
         username: @user.username,
         email: @user.email,
+      }
+    }
+  end
+
+  def to_serialized_json_with_events
+    {
+      user: {
+        id: @user.id,
+        username: @user.username,
+        email: @user.email,
       },
       events: @user.events
     }
