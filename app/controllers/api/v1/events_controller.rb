@@ -7,29 +7,29 @@ class Api::V1::EventsController < ApplicationController
     if event.save
       render json: event, status: :created
     else
-      render json: { errors: { type: 'newEvent', content: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'newEvent', content: event.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /api/v1/events/1
   def update
-    if event.update(event_params)
-      render json: { notice: `#{event.name} has been updated` }, status: :created
+    if @event.update(event_params)
+      render json: { notice: `#{@event.name} has been updated` }, status: :partial_content
     else
-      render json: { errors: { type: 'eventUpdate', content: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'eventUpdate', content: @event.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/v1/events/1
   def destroy
-    event.destroy
-    render json: { notice: `#{event.name} has been deleted` }, status: :destroyed
+    @event.destroy
+    render json: { notice: `#{@event.name} has been deleted` }, status: :reset_content
   end
 
   private
 
     def set_event
-      event = Event.find(params[:id])
+      @event = Event.find(params[:id])
     end
 
     def event_params
