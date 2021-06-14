@@ -5,9 +5,9 @@ class Api::V1::GuestsController < ApplicationController
   def create
     guest = Guest.new(guest_params)
     if guest.save
-      render json: guest, except: [:created_at, :updated_at] status: :created, location: guest
+      render json: guest, except: [:created_at, :updated_at] status: :created
     else
-      render json: { errors: { type: 'newGuest', content: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'newGuest', content: guest.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
@@ -16,14 +16,14 @@ class Api::V1::GuestsController < ApplicationController
     if @guest.update(guest_params)
       render json: { notice: `#{@guest.name} has been updated` }, status: :partial_content
     else
-      render json: { errors: { type: 'guestUpdate', content: user.errors.full_messages } }, status: :unprocessable_entity
+      render json: { errors: { type: 'guestUpdate', content: @guest.errors.full_messages } }, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/v1/guests/1
   def destroy
     @guest.destroy
-    render json: { notice: `#{event.name} has been deleted` }, status: :destroyed
+    render json: { notice: `#{@guest.name} has been deleted` }, status: :reset_content
   end
 
   private
