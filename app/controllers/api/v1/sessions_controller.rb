@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       user_json = UserSerializer.new(user).to_serialized_json_with_events
       render json: user_json, status: :created
     else
-      render json: { errors: { type: 'login', content: "Incorrect email/password" } }
+      render json: { errors: { type: 'login', content: "Incorrect email/password" } }, status: :unprocessable_entity
     end
   end
 
