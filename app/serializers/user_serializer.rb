@@ -4,23 +4,22 @@ class UserSerializer
   end
 
   def to_serialized_json
-    {
-      user: {
-        id: @user.id,
-        username: @user.username,
-        email: @user.email,
-      }
-    }
+    @user.to_json(only: [:id, :username, :email])
   end
 
   def to_serialized_json_with_events
-    {
-      user: {
-        id: @user.id,
-        username: @user.username,
-        email: @user.email,
+    @user.to_json(
+      include: {
+        events: {
+          include: {
+            guests: {
+              except: [:created_at, :updated_at]
+            }
+          },
+          except: [:created_at]
+        }
       },
-      events: @user.events
-    }
+      only: [:id, :username, :email]
+    )
   end
 end
