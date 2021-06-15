@@ -13,10 +13,10 @@ class UserSerializer
         events: {
           include: {
             guests: {
-              except: [:created_at, :updated_at]
+              except: [:created_at, :updated_at, :event_id]
             }
           },
-          except: [:created_at]
+          except: [:created_at, :user_id]
         }
       },
       only: [:id, :username, :email]
