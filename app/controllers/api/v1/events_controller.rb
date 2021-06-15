@@ -3,9 +3,11 @@ class Api::V1::EventsController < ApplicationController
 
   # POST /api/v1/events
   def create
-    event = Event.new(event_params)
+    user = User.find(params[:user_id])
+    event = user.events.build(event_params)
     if event.save
-      render json: event, status: :created
+      event_json = EventSerializer.new(event).to_serialized_json
+      render json: event_json, status: :created
     else
       render json: { errors: { type: 'newEvent', content: event.errors.full_messages } }, status: :unprocessable_entity
     end
@@ -14,7 +16,8 @@ class Api::V1::EventsController < ApplicationController
   # PATCH/PUT /api/v1/events/1
   def update
     if @event.update(event_params)
-      render json: { notice: `#{@event.name} has been updated` }, status: :partial_content
+      event_json = EventSerializer.new(@event).to_serialized_json
+      render json: event_json, status: :partial_content
     else
       render json: { errors: { type: 'eventUpdate', content: @event.errors.full_messages } }, status: :unprocessable_entity
     end
