@@ -23,7 +23,7 @@ class Api::V1::GuestsController < ApplicationController
   # DELETE /api/v1/guests/1
   def destroy
     @guest.destroy
-    render json: { notice: `#{@guest.name} has been deleted` }, status: :reset_content
+    render json: { notice: `#{@guest.name} has been deleted` }, status: :partial_content
   end
 
   private

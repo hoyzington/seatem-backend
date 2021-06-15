@@ -23,7 +23,7 @@ class Api::V1::EventsController < ApplicationController
   # DELETE /api/v1/events/1
   def destroy
     @event.destroy
-    render json: { notice: `#{@event.name} has been deleted` }, status: :reset_content
+    render json: { notice: `#{@event.name} has been deleted` }, status: :partial_content
   end
 
   private

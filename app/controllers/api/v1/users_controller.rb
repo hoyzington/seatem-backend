@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       user_json = UserSerializer.new(@user).to_serialized_json
-      render json: user_json.merge({ notice: 'Your profile has been updated' }), status: :partial_content
+      render json: user_json, status: :partial_content
     else
       render json: { errors: { type: 'userUpdate', content: @user.errors.full_messages } }, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
   # DELETE /api/v1/users/1
   def destroy
     @user.destroy
-    render json: { notice: 'Your account has been deleted' }, status: :reset_content
+    render json: { notice: 'Your account has been deleted' }, status: :partial_content
   end
 
   private

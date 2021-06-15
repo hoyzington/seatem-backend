@@ -22,6 +22,6 @@ class Api::V1::SessionsController < ApplicationController
 
   def destroy
     session.clear
-    render json: { notice: 'Successfully logged out' }, status: :reset_content
+    render json: { notice: 'Successfully logged out' }, status: :partial_content
   end
 end
