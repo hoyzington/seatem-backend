@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:update, :destroy]
 
-  # POST /api/v1/users
+  # POST /api/v1/signup
   def create
     user = User.new(user_params)
     if user.save

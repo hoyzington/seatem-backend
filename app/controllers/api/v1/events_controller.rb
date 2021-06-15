@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   before_action :set_event, only: [:update, :destroy]
 
-  # POST /api/v1/events
+  # POST /api/v1/users/1/events
   def create
     user = User.find(params[:user_id])
     event = user.events.build(event_params)
@@ -13,7 +13,7 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/events/1
+  # PATCH/PUT /api/v1/users/1/events/1
   def update
     if @event.update(event_params)
       event_json = EventSerializer.new(@event).to_serialized_json
@@ -23,7 +23,7 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
-  # DELETE /api/v1/events/1
+  # DELETE /api/v1/users/1/events/1
   def destroy
     @event.destroy
     render json: { notice: `#{@event.name} has been deleted` }, status: :partial_content

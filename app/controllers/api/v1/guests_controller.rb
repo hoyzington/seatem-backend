@@ -1,7 +1,7 @@
 class Api::V1::GuestsController < ApplicationController
   before_action :set_guest, only: [:show, :update, :destroy]
 
-  # POST /api/v1/guests
+  # POST /api/v1/users/1/events/1/guests
   def create
     guest = Guest.new(guest_params)
     if guest.save
@@ -11,7 +11,7 @@ class Api::V1::GuestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/guests/1
+  # PATCH/PUT /api/v1/users/1/events/1/guests/1
   def update
     if @guest.update(guest_params)
       render json: { notice: `#{@guest.name} has been updated` }, status: :partial_content
@@ -20,7 +20,7 @@ class Api::V1::GuestsController < ApplicationController
     end
   end
 
-  # DELETE /api/v1/guests/1
+  # DELETE /api/v1/users/1/events/1/guests/1
   def destroy
     @guest.destroy
     render json: { notice: `#{@guest.name} has been deleted` }, status: :partial_content
