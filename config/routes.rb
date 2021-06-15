@@ -6,10 +6,12 @@ Rails.application.routes.draw do
       get 'get_current_user', to: 'sessions#get_current_user'
       delete 'logout', to: 'sessions#destroy'
       resources :users, only: [:update, :destroy] do
-        resources :events, only: [:create, :update, :destroy] do
-          resources :guests, only: [:create, :update, :destroy]
-        end
+        resources :events, only: [:create]
       end
+      resources :events, only: [:update, :destroy] do
+        resources :guests, only: [:create]
+      end
+      resources :guests, only: [:update, :destroy]
     end
   end
 end
