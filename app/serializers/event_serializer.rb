@@ -4,14 +4,12 @@ class EventSerializer
   end
 
   def to_serialized_json
-    user = @event.user
-    {
-      user: {
-        username: user.username,
-        email: user.email,
-        events: user.events,
+    @event.to_json(
+      include: {
+        guests: {
+          except: [:created_at, :event_id]
+        }
       },
-      eventId: @event.id
-    }
+      except: [:created_at, :user_id])
   end
 end
