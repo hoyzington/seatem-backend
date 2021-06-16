@@ -16,8 +16,9 @@ class Api::V1::GuestsController < ApplicationController
   # PATCH/PUT /api/v1/guests/1
   def update
     if @guest.update(guest_params)
-      guest_json = GuestSerializer.new(@guest).to_serialized_json
-      render json: guest_json, status: :partial_content
+      # guest_json = GuestSerializer.new(@guest).to_serialized_json
+      # render json: guest_json, status: :partial_content
+      render json: { notice: `#{@guest.firstName} has been updated` }, status: :partial_content
     else
       render json: { errors: { type: 'guestUpdate', content: @guest.errors.full_messages } }, status: :unprocessable_entity
     end
