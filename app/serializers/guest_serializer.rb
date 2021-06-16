@@ -4,6 +4,6 @@ class GuestSerializer
   end
 
   def to_serialized_json
-    @guest.to_json(except: [:created_at, :updated_at, :event_id])
+    @guest.to_json(only: [:id, :firstName, :middleName, :lastName,])
   end
 end
