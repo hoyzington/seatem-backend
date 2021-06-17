@@ -18,7 +18,7 @@ class Api::V1::EventsController < ApplicationController
     if @event.update(event_params)
       # event_json = EventSerializer.new(@event).to_serialized_json_with_guests
       # render json: event_json, status: :partial_content
-      render json: { notice: `#{@event.name} has been updated` }, status: :partial_content
+      render json: { notice: "#{@event.name} has been updated" }
     else
       render json: { errors: { type: 'eventUpdate', content: @event.errors.full_messages } }, status: :unprocessable_entity
     end
