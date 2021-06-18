@@ -18,7 +18,7 @@ class Api::V1::GuestsController < ApplicationController
     if @guest.update(guest_params)
       # guest_json = GuestSerializer.new(@guest).to_serialized_json
       # render json: guest_json, status: :partial_content
-      render json: { notice: `#{@guest.firstName} has been updated` }, status: :partial_content
+      render json: { notice: "#{@guest.firstName} has been updated" }, status: :partial_content
     else
       render json: { errors: { type: 'guestUpdate', content: @guest.errors.full_messages } }, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::V1::GuestsController < ApplicationController
   # DELETE /api/v1/guests/1
   def destroy
     @guest.destroy
-    render json: { notice: `#{@guest.name} has been deleted` }, status: :partial_content
+    render json: { notice: "#{@guest.name} has been deleted" }, status: :partial_content
   end
 
   private
