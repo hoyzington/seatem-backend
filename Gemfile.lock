@@ -64,8 +64,6 @@ GEM
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     erubi (1.10.0)
-    fast_jsonapi (1.5)
-      activesupport (>= 4.2)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -89,6 +87,7 @@ GEM
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    pg (1.2.3)
     puma (4.3.7)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -138,7 +137,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tzinfo (1.2.9)
@@ -155,14 +153,13 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
-  fast_jsonapi (~> 1.5)
   listen (~> 3.2)
+  pg (~> 1.2, >= 1.2.3)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.6)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
 
 RUBY VERSION
    ruby 2.7.1p83

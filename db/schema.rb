@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2021_06_07_232102) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_232102) do
     t.string "traits"
     t.boolean "seated"
     t.string "issues"
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_guests_on_event_id"
