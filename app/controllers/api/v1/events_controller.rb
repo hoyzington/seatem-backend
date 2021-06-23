@@ -6,7 +6,7 @@ class Api::V1::EventsController < ApplicationController
     user = User.find(params[:user_id])
     event = user.events.build(event_params)
     if event.save
-      event_json = EventSerializer.new(event).to_serialized_json
+      event_json = EventSerializer.new(event).to_serialized_json_with_guests
       render json: event_json, status: :created
     else
       render json: { errors: { type: 'newEvent', content: event.errors.full_messages } }, status: :unprocessable_entity
