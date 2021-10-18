@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class UserSerializer
   def initialize(user_object)
     @user = user_object
   end
 
   def to_serialized_json
-    @user.to_json(only: [:id, :username, :email])
+    @user.to_json(only: %i[id username email])
   end
 
   def to_serialized_json_with_events
@@ -13,13 +15,13 @@ class UserSerializer
         events: {
           include: {
             guests: {
-              except: [:created_at, :updated_at, :event_id]
+              except: %i[created_at updated_at event_id]
             }
           },
-          except: [:created_at, :user_id]
+          except: %i[created_at user_id]
         }
       },
-      only: [:id, :username, :email]
+      only: %i[id username email]
     )
   end
 end
